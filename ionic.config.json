@@ -1,0 +1,7 @@
+{
+  "name": "LOTEKA",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
