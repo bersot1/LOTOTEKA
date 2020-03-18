@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Gerar Jogo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-datetime placeholder="Semana" displayFormat="DD/MMM/YYYY" [(ngModel)]="week"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <!-- <ion-col size="6">
+      <ion-item>
+    
+        <ion-input type="number" placeholder="Qnt. jogos?"></ion-input>
+      </ion-item>
+    </ion-col> -->
+  </ion-row>
+
+
+
+  <ion-label>Numeros sorteados: {{objGame.numbers}}</ion-label>
+
+
+
+
+  <ion-button (click)="generateNumbers()" *ngIf="!drawNumbers">
+    Sortear numeros
+  </ion-button>
+
+  <ion-button (click)="insertGame()" *ngIf="drawNumbers">
+    Salvar jogo
+  </ion-button>
+
+</ion-content>

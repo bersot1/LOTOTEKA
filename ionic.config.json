@@ -1,7 +1,8 @@
 {
   "name": "LOTEKA",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
