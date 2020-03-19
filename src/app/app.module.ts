@@ -11,6 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SQLite } from '@ionic-native/sqlite/ngx'
 
+import { Camera } from '@ionic-native/camera/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -19,7 +22,9 @@ import { SQLite } from '@ionic-native/sqlite/ngx'
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SQLite
+    SQLite,
+    Camera,
+    BarcodeScanner
   ],
   bootstrap: [AppComponent]
 })

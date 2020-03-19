@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   
-  { path: '', redirectTo: '/page-draw-numbers' },
+  { path: '', redirectTo: '/page-draw-numbers' , pathMatch: 'full'},
   { path: 'page-draw-numbers', loadChildren: './pages/page-draw-numbers/page-draw-numbers.module#PageDrawNumbersPageModule' },
   { path: 'page-my-games', loadChildren: './pages/page-my-games/page-my-games.module#PageMyGamesPageModule' },
   {
