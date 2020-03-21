@@ -14,10 +14,12 @@ import { SQLite } from '@ionic-native/sqlite/ngx'
 import { Camera } from '@ionic-native/camera/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 
+import { BrMaskerModule } from 'br-mask';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrMaskerModule],
   providers: [
     StatusBar,
     SplashScreen,
