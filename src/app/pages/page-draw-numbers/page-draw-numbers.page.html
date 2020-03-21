@@ -1,4 +1,4 @@
-<ion-header no-border *ngIf="contentIsLoad">
+<!-- <ion-header no-border *ngIf="contentIsLoad">
   <ion-segment fixed  (ionChange)="segmentChanged($event)">
     <ion-segment-button value="randomNumbers" checked mode="md">
       <ion-label >Sortear Jogo</ion-label>
@@ -7,6 +7,11 @@
       <ion-label >Salvar Meu Jogo</ion-label>
     </ion-segment-button>
   </ion-segment>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Header</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -18,59 +23,74 @@
       </ion-item>
     </ion-col>
   </ion-row>
-
-<!-- RANDOM NUMBERS -->
-<div *ngIf="isRandomNumbers"> 
-  <ion-row >
-    <ion-col size="12" *ngIf="objGame.numbers.length > 0">
-      <ion-label>Numeros sorteados: {{objGame.numbers}}</ion-label>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>Quantos jogos:</ion-label>
+        <ion-input type="number" [value]='howManyGame' [(ngModel)]="howManyGame"></ion-input>
+      </ion-item>
     </ion-col>
   </ion-row>
 
-  <button ion-button full (click)="selectSource()">Select Image</button>
-  <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage">Recognize Image</button>
+  <!-- RANDOM NUMBERS -->
+  <div *ngIf="isRandomNumbers">
  
-  <img [src]="selectedImage" *ngIf="selectedImage">
- 
-  <ion-card *ngIf="imageText">
-    <ion-card-header>
-      Image Text
-    </ion-card-header>
-    <ion-card-content>
-      {{ imageText }}
-    </ion-card-content>
-  </ion-card>
-</div>
-<!-- SAVE GAME -->
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-item>
+              <ion-label>Numeros da Semana:</ion-label>
+              <ion-select placeholder="Selecine" [(ngModel)]="dateChosen" (click)="getAllMeusJogos()">
+                <ion-select-option [value]="game.Week" *ngFor="let game of myGames">{{game.Week}}
+                </ion-select-option>
+              </ion-select>
+              <ion-button (click)="getNumersOfGameByDateChosen()">
+                Buscar Jogo
+              </ion-button>
+            </ion-item>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-<div *ngIf="!isRandomNumbers">
-  <div>
-    <ion-row>
-      <ion-col size="12">
-        <ion-label>Escreva separando os numeros com .</ion-label>
-        <ion-input type="number" placeholder="02.05.09.10..." min="1" max="2" (ionChange)="maskGame($event)"></ion-input>
-      </ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-list *ngFor="let x of objGame">
+            <ion-label>Jogo ({{x.id}}): {{x.NumberOfGame}}</ion-label>
+          </ion-list>
+          
+        </ion-col>
+      </ion-row>
+
   </div>
-</div>
+  <!-- SAVE GAME -->
+
+  <div *ngIf="!isRandomNumbers">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>Escreva separando os numeros com .</ion-label>
+          <ion-input type="number" placeholder="02.05.09.10..." min="1" max="2" (ionChange)="maskGame($event)">
+          </ion-input>
+        </ion-col>
+      </ion-row>
+  </div>
 
 
 </ion-content>
+
 <ion-footer>
   <ion-toolbar>
-    <!-- RANDOM NUMBERS -->
-    <div *ngIf="isRandomNumbers">
-      <ion-button (click)="generateNumbers()" *ngIf="!drawNumbers">
+   
+
+      <ion-button (click)="generateNumbers()" *ngIf="isRandomNumbers" >
         Sortear numeros
       </ion-button>
     
-      <ion-button (click)="insertGame()" *ngIf="drawNumbers">
+      <ion-button (click)="insertGame()">
         Salvar jogo
       </ion-button>   
-    </div>
 
 
-    <!-- SAVE GAME  -->
+    
     <div *ngIf="!isRandomNumbers">
       <ion-button (click)="salveGame()">
         Salvar
