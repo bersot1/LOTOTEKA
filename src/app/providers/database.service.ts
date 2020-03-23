@@ -37,23 +37,15 @@ export class DatabaseService {
     public createTables(db: SQLiteObject){
         db.sqlBatch(
             [
-            'CREATE TABLE IF NOT EXISTS Games (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Week TEXT, NumberOfGame TEXT)',
-            'CREATE TABLE IF NOT EXISTS Result (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Week TEXT, NumberOfResult TEXT)'
+            'CREATE TABLE IF NOT EXISTS Concursos (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Concurso INTEGER, AwardedNumbers TEXT)',
+            'CREATE TABLE IF NOT EXISTS Games (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Register Text, MyNumbers TEXT)',
+            'CREATE TABLE IF NOT EXISTS Results (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, IdGame INTEGER, IdConcurso INTEGER, MyRightNumbers TEXT)'
         ]
         ).then(() => {
             console.log('tabelas criadas');
             
         }).catch((e) => {
             console.log('error ao criar tabelas', e);
-            
-        })
-    }
-
-    public insertGameInDB(week:any, numbers: any){
-        debugger
-        let data = [week, JSON.stringify(numbers)];
-        return this.database.executeSql('INSERT INTO games (Week, NumberOfGame) VALUES (?,?)', data).then( data => {
-            console.log('insert');
             
         })
     }

@@ -22,7 +22,7 @@ export class AppComponent {
     public dbProvider:DatabaseService
   ) {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent ();
 
       dbProvider.createDataBase()
       .then(() => {

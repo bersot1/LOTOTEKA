@@ -15,11 +15,12 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 
 import { BrMaskerModule } from 'br-mask';
+import { ModalImportGamePageModule } from './pages/modal-import-game/modal-import-game.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrMaskerModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrMaskerModule, ModalImportGamePageModule],
   providers: [
     StatusBar,
     SplashScreen,

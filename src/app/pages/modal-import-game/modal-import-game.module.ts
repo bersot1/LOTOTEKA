@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TestePageRoutingModule } from './teste-routing.module';
+import { ModalImportGamePageRoutingModule } from './modal-import-game-routing.module';
 
-import { TestePage } from './teste.page';
+import { ModalImportGamePage } from './modal-import-game.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TestePageRoutingModule
+    ModalImportGamePageRoutingModule
   ],
-  declarations: [TestePage]
+  declarations: [ModalImportGamePage]
 })
-export class TestePageModule {}
+export class ModalImportGamePageModule {}
