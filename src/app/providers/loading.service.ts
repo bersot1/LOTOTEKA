@@ -19,6 +19,7 @@ export class loadingProvider {
             spinner: 'circles',
             message: 'Carregando',
             translucent: true,
+            
             cssClass: 'cssLoading'
         }).then(a => {
             a.present().then(() => {

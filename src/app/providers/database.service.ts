@@ -16,37 +16,36 @@ export class DatabaseService {
         private sqlite: SQLite,
         private plt: Platform
     ) {
-       
+
     }
 
-    public initDB(){
+    public initDB() {
         return this.sqlite.create({
             name: 'Games.db',
             location: 'default'
         })
-           
+
     }
 
-    public createDataBase(){
+    public createDataBase() {
         return this.initDB()
             .then((db: SQLiteObject) => {
                 this.createTables(db);
             })
     }
 
-    public createTables(db: SQLiteObject){
+    public createTables(db: SQLiteObject) {
         db.sqlBatch(
             [
-            'CREATE TABLE IF NOT EXISTS Concursos (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Concurso INTEGER, AwardedNumbers TEXT)',
-            'CREATE TABLE IF NOT EXISTS Games (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Register Text, MyNumbers TEXT)',
-            'CREATE TABLE IF NOT EXISTS Results (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, IdGame INTEGER, IdConcurso INTEGER, MyRightNumbers TEXT)'
-        ]
+                'CREATE TABLE IF NOT EXISTS Concursos (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Concurso INTEGER, AwardedNumbers TEXT)',
+                'CREATE TABLE IF NOT EXISTS Games (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Register Text, MyNumbers TEXT)',
+                'CREATE TABLE IF NOT EXISTS Results (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, IdGame INTEGER, IdConcurso INTEGER, MyRightNumbers TEXT)'
+            ]
         ).then(() => {
-            console.log('tabelas criadas');
-            
+
         }).catch((e) => {
-            console.log('error ao criar tabelas', e);
-            
+
+
         })
     }
 }

@@ -11,14 +11,15 @@ export class GameService {
 
   public isLoading = false;
 
-  constructor(private dbProvider: DatabaseService,
-    public loadingProvider: loadingProvider
+  constructor(
+    private dbProvider: DatabaseService,
+    private loadingProvider: loadingProvider
   ) { }
 
 
   public insertGame(obj) {
     this.loadingProvider.present();
-    debugger
+
 
     for (let index = 0; index < obj.length; index++) {
 
@@ -31,42 +32,41 @@ export class GameService {
         .then((db: SQLiteObject) => {
           let sql = 'insert into Games (Register,MyNumbers) VALUES (?,?)'
           return db.executeSql(sql, data).then(() => {
-            console.log('inserido com sucesso');
 
           })
             .catch((e) => {
-              console.log('error ao inserir', e);
+
             })
         }).catch((e) => {
-          console.log('Error no initdb', e);
 
-        })
+
+        });
     }
 
-    return result
+    return result;
 
   }
 
   public insertConcurso(obj) {
     this.loadingProvider.present();
-    let data = [obj.Concurso, obj.AwardedNumbers]
-    var result = this.dbProvider.initDB()
+    let data = [obj.Concurso, obj.AwardedNumbers];
+    let result = this.dbProvider.initDB()
       .then((db: SQLiteObject) => {
-        let sql = 'insert into Concursos (Concurso,AwardedNumbers) VALUES (?,?)'
+        let sql = 'insert into Concursos (Concurso,AwardedNumbers) VALUES (?,?)';
         return db.executeSql(sql, data).then(() => {
-          console.log('inserido com sucesso');
+
 
         })
           .catch((e) => {
-            console.log('error ao inserir', e);
+
           })
       }).catch((e) => {
-        console.log('Error no initdb', e);
+
 
       })
 
 
-    return result
+    return result;
 
   }
 
@@ -74,26 +74,21 @@ export class GameService {
   public insertResult(obj) {
     this.loadingProvider.present();
     for (let index = 0; index < obj.length; index++) {
-      debugger
-      // let convertToStringResultOfWeek = JSON.stringify(obj[index].ResultOfWeek);
-      // let stringReplaceROW = convertToStringResultOfWeek.replace('[', "")
-      // let stringReplaceROW2 = stringReplaceROW.replace(']',"")
-
       let data = [obj[index].IdGame, obj[index].IdConcurso, obj[index].RightNumbers];
 
       var result = this.dbProvider.initDB()
         .then((db: SQLiteObject) => {
           let sql = 'insert into Results (IdGame,IdConcurso, MyRightNumbers) VALUES (?,?,?)'
           return db.executeSql(sql, data).then(() => {
-            console.log('inserido com sucesso');
+
 
 
           })
             .catch((e) => {
-              console.log('error ao inserir', e);
+
             })
         }).catch((e) => {
-          console.log('Error no initdb', e);
+
 
         })
     }
@@ -111,13 +106,12 @@ export class GameService {
         return db.executeSql('SELECT Register FROM Games GROUP BY Register ', [])
           .then((data) => {
 
-            console.log('then select all');
 
             let games: any[] = [];
             for (let i = 0; i < data.rows.length; i++) {
 
               let item = data.rows.item(i);
-              console.log('item for', item);
+
 
               games.push(item);
 
@@ -139,13 +133,11 @@ export class GameService {
         return db.executeSql('SELECT * FROM Games', [])
           .then((data) => {
 
-            console.log('then select all');
-
             let games: any[] = [];
             for (let i = 0; i < data.rows.length; i++) {
 
               let item = data.rows.item(i);
-              console.log('item for', item);
+              ;
 
               games.push(item);
 
@@ -163,13 +155,12 @@ export class GameService {
         return db.executeSql('SELECT * FROM Games G WHERE G.Register = ?', [date])
           .then((data) => {
 
-            console.log('then select all games by date');
+
 
             let games: any[] = [];
             for (let i = 0; i < data.rows.length; i++) {
 
               let item = data.rows.item(i);
-              console.log('item for by date', item);
 
               games.push(item);
 
@@ -187,13 +178,12 @@ export class GameService {
       .then((db: SQLiteObject) => {
         return db.executeSql('SELECT * FROM Concursos', [])
           .then((data) => {
-            console.log('then select all Concursos');
+
 
             let concursos: any[] = [];
             for (let i = 0; i < data.rows.length; i++) {
 
               let item = data.rows.item(i);
-              console.log('item for concurso', item);
 
               concursos.push(item);
 
@@ -206,22 +196,19 @@ export class GameService {
   }
 
   public getConcursoByNumber(number) {
-    debugger
     let stringNumber = number.toString();
-    let data = [stringNumber]
+    let data = [stringNumber];
     this.loadingProvider.present();
     return this.dbProvider.initDB()
       .then((db: SQLiteObject) => {
         return db.executeSql('SELECT * FROM Concursos WHERE Concurso = ?', [data])
           .then((data) => {
 
-            console.log('then select all games by date');
-
             let concurso: any[] = [];
             for (let i = 0; i < data.rows.length; i++) {
 
               let item = data.rows.item(i);
-              console.log('item for by date', item);
+
 
               concurso.push(item);
 

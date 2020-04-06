@@ -14,7 +14,7 @@ export class ModalImportGamePage implements OnInit {
 
   public registerGame: string;
 
-  public games: any[] = []
+  public games: any[] = [];
 
   constructor(
     private modalCtrl: ModalController,
@@ -32,32 +32,26 @@ export class ModalImportGamePage implements OnInit {
 
   makeMaskGame(e) {
 
-    console.log(e.detail.value);
-
     this.games = [];
-    let aux: any = e.detail.value
-
-
+    let aux: any = e.detail.value;
 
     for (let index = 0; index < aux; index++) {
       this.games[index] = {
         Index: index + 1,
         Register: this.registerGame,
         Numbers: ''
-      }
+      };
 
     }
   }
 
   public saveGame() {
-    this.registerGame = moment(this.registerGame).format("DD/MM/YYYY")
+    this.registerGame = moment(this.registerGame).format('DD/MM/YYYY');
     if (this.registerGame === null || this.registerGame === undefined) {
-      this.alert('Aviso', 'Campos obrigatórios não preenchidos.')
+      this.alert('Aviso', 'Campos obrigatórios não preenchidos.');
     } else {
       this.insertGame();
     }
-    console.log(this.games);
-
   }
 
   public insertGame() {
@@ -65,17 +59,17 @@ export class ModalImportGamePage implements OnInit {
       this.games[i] = {
         Register: this.registerGame,
         MyNumbers: this.games[i].Numbers
-      }
+      };
 
     }
 
     this.gameProvider.insertGame(this.games).then(data => {
-      this.alert('Aviso', 'Jogo(s) importados com sucesso.')
+      this.alert('Aviso', 'Jogo(s) importados com sucesso.');
       this.close();
       this.loadingProvider.dismiss();
 
 
-    })
+    });
   }
 
   async alert(eHeader, eMessage) {
