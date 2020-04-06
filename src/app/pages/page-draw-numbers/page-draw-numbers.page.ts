@@ -26,10 +26,10 @@ export class PageDrawNumbersPage implements OnInit {
   public numersRandom: any[] = [];
   public concursos: any[] = [];
   public resultTotal: any[] = [];
-  
+
 
   public week: any;
- 
+
   public myGame: any;
   public loading: any;
   public myGames: any;
@@ -38,7 +38,7 @@ export class PageDrawNumbersPage implements OnInit {
   public segment: any;
 
 
-  public resultWeek: string = "1,2,5,6,7,8,10,12,15,16,17,18,20,21,25"
+
   public registerGame: string;
 
   public howManyGame: number = 1;
@@ -148,11 +148,11 @@ export class PageDrawNumbersPage implements OnInit {
   }
 
   public async insertGame() {
-    
-  
+
+
     if ((this.registerGame === null || this.registerGame === undefined) || this.objGame.length === 0) {
       this.alert('Aviso', 'Campo `data do jogo` obrigatório para salvar. ')
-      
+
     } else {
       this.objGame.forEach(e => {
         e.Register = moment(this.registerGame).format("DD/MM/YYYY")
@@ -175,11 +175,11 @@ export class PageDrawNumbersPage implements OnInit {
       });
 
       await ConfirmSaveGame.present();
-      console.log('for no insert',this.objGame);
-     
+      console.log('for no insert', this.objGame);
+
     }
 
-     
+
 
 
 
@@ -272,65 +272,66 @@ export class PageDrawNumbersPage implements OnInit {
   //----RESULT GAME ----//
   //--------------------//
 
- 
 
-  public saveResult() {
-    /*
-    idgame this.resultTotal
-    result of week
-    right numbers
 
-    */
+  // public saveResult() {
+  //   /*
+  //   idgame this.resultTotal
+  //   result of week
+  //   right numbers
 
-    let obj: any[] = []
+  //   */
 
-    for (let i = 0; i < this.resultTotal.length; i++) {
-      obj[i] = {
-        IdGame: this.resultTotal[i].idGame,
-        ResultOfWeek: this.resultWeek,
-        RightNumbers: this.resultTotal[i].rightNumbers
-      }
+  //   let obj: any[] = []
 
-    }
+  //   for (let i = 0; i < this.resultTotal.length; i++) {
+  //     obj[i] = {
+  //       IdGame: this.resultTotal[i].idGame,
+  //       ResultOfWeek: this.resultWeek,
+  //       RightNumbers: this.resultTotal[i].rightNumbers
+  //     }
 
-    this.gameProvider.insertResult(obj).then(data => {
-      console.log('inserido com sucesso', data);
+  //   }
 
-    })
+  //   this.gameProvider.insertResult(obj).then(data => {
+  //     console.log('inserido com sucesso', data);
 
-  }
+  //   })
 
-  public async addConcurso(){
+  // }
+
+  public async addConcurso() {
     let promptAddConcurso = await this.alertCtrl.create({
       mode: 'ios',
       header: 'Criar concurso',
-      inputs: 
-      [{
-        name: 'numeroConcurso',
-        placeholder: 'Nº do Concurso',
-        type: 'number'
-      },
-    {
-      name: 'awardedNumbers',
-      placeholder: 'Nºs Premiados separados por virgula'
-    }], buttons: [{
-      text: 'Adicionar',
-      handler: data => {
-        if (data.numeroConcurso === null ||  data.awardedNumbers === null) {
-          this.alert('Aviso', 'Todos os campos obrigatórios')
-        } else {
-          this.insertConcursoInDB(data.numeroConcurso, data.awardedNumbers);
-        }
-      }
-    },{
-      text: 'Cancelar'
-    }]
-    }) 
+      message: 'ex: 1,5,6,7,8,10,12,15,20',
+      inputs:
+        [{
+          name: 'numeroConcurso',
+          placeholder: 'Nº do Concurso',
+          type: 'number'
+        },
+        {
+          name: 'awardedNumbers',
+          placeholder: 'Nºs Premiados separados por virgula'
+        }], buttons: [{
+          text: 'Adicionar',
+          handler: data => {
+            if (data.numeroConcurso === null || data.awardedNumbers === null) {
+              this.alert('Aviso', 'Todos os campos obrigatórios')
+            } else {
+              this.insertConcursoInDB(data.numeroConcurso, data.awardedNumbers);
+            }
+          }
+        }, {
+          text: 'Cancelar'
+        }]
+    })
     await promptAddConcurso.present()
-    
+
   }
 
-  public insertConcursoInDB(nConcurso, awardedNumbers){
+  public insertConcursoInDB(nConcurso, awardedNumbers) {
     console.log(nConcurso, awardedNumbers);
 
     let obj: any = {
@@ -342,12 +343,12 @@ export class PageDrawNumbersPage implements OnInit {
       this.loadingProvider.dismiss();
       this.alert('Aviso', 'Concurso adicionado com sucesso.')
       console.log(data);
-      
+
     })
-    
+
   }
 
-  public getAllConcursos(){
+  public getAllConcursos() {
     this.gameProvider.getAllConcursos().then(data => {
       let aux: any = data;
       for (let index = 0; index < aux.length; index++) {
@@ -360,9 +361,9 @@ export class PageDrawNumbersPage implements OnInit {
     })
   }
 
-  
 
-  public verifyResult(){
+
+  public verifyResult() {
     this.getConcursoByNumbersOfConcurso();
   }
 
@@ -382,11 +383,11 @@ export class PageDrawNumbersPage implements OnInit {
       this.verifyRightNumbers(concurso);
     })
 
-    
+
 
   }
-  
-  public getConcursoByNumbersOfConcurso(){ 
+
+  public getConcursoByNumbersOfConcurso() {
     this.gameProvider.getConcursoByNumber(this.concursoChosen).then(data => {
       this.getNumersOfGameByDateChosenResult(data[0]);
     })
@@ -394,12 +395,12 @@ export class PageDrawNumbersPage implements OnInit {
 
 
   public verifyRightNumbers(dataConcurso) {
-    console.log('data concurso',dataConcurso);
-    console.log('obj game',this.objGame);
+    console.log('data concurso', dataConcurso);
+    console.log('obj game', this.objGame);
 
     this.AwardedNumbers = dataConcurso.AwardedNumbers;
-    
-    
+
+
 
     this.resultTotal = [];
 
@@ -412,7 +413,7 @@ export class PageDrawNumbersPage implements OnInit {
     }
 
     for (let indexGame = 0; indexGame < this.objGame.length; indexGame++) {
-      
+
       let numbersOfGame: any = this.objGame[indexGame].MyNumbers.split(',');
       let resultSplit: any = dataConcurso.AwardedNumbers.split(',');
       numbersOfGame.forEach(game => {
@@ -427,7 +428,7 @@ export class PageDrawNumbersPage implements OnInit {
 
     this.loadingProvider.dismiss();
     console.log('acabo for', this.resultTotal);
-    
+
 
     /*
     TODO:
@@ -439,7 +440,7 @@ export class PageDrawNumbersPage implements OnInit {
 
   }
 
-  public async goToimportGame(){
+  public async goToimportGame() {
     let modalImporta = await this.modalCtrl.create({
       component: ModalImportGamePage,
       componentProps: {}

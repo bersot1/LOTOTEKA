@@ -15,7 +15,7 @@ export class GameService {
     public loadingProvider: loadingProvider
   ) { }
 
-  
+
   public insertGame(obj) {
     this.loadingProvider.present();
     debugger
@@ -42,32 +42,32 @@ export class GameService {
 
         })
     }
-    
+
     return result
-    
+
   }
 
   public insertConcurso(obj) {
     this.loadingProvider.present();
     let data = [obj.Concurso, obj.AwardedNumbers]
-      var result = this.dbProvider.initDB()
-        .then((db: SQLiteObject) => {
-          let sql = 'insert into Concursos (Concurso,AwardedNumbers) VALUES (?,?)'
-          return db.executeSql(sql, data).then(() => {
-            console.log('inserido com sucesso');
-
-          })
-            .catch((e) => {
-              console.log('error ao inserir', e);
-            })
-        }).catch((e) => {
-          console.log('Error no initdb', e);
+    var result = this.dbProvider.initDB()
+      .then((db: SQLiteObject) => {
+        let sql = 'insert into Concursos (Concurso,AwardedNumbers) VALUES (?,?)'
+        return db.executeSql(sql, data).then(() => {
+          console.log('inserido com sucesso');
 
         })
+          .catch((e) => {
+            console.log('error ao inserir', e);
+          })
+      }).catch((e) => {
+        console.log('Error no initdb', e);
 
-    
+      })
+
+
     return result
-    
+
   }
 
 
@@ -79,27 +79,27 @@ export class GameService {
       // let stringReplaceROW = convertToStringResultOfWeek.replace('[', "")
       // let stringReplaceROW2 = stringReplaceROW.replace(']',"")
 
-      let data = [obj[index].IdGame, obj[index].IdConcurso, obj[index].RightNumbers ];
+      let data = [obj[index].IdGame, obj[index].IdConcurso, obj[index].RightNumbers];
 
       var result = this.dbProvider.initDB()
         .then((db: SQLiteObject) => {
-          let sql = 'insert into Results (IdGame,IdConcurso, RightNumbers) VALUES (?,?,?)'
+          let sql = 'insert into Results (IdGame,IdConcurso, MyRightNumbers) VALUES (?,?,?)'
           return db.executeSql(sql, data).then(() => {
             console.log('inserido com sucesso');
-           
+
 
           })
             .catch((e) => {
-              console.log('error ao inserir', e);            
+              console.log('error ao inserir', e);
             })
         }).catch((e) => {
           console.log('Error no initdb', e);
 
         })
     }
-    
+
     return result
-    
+
   }
 
 
@@ -110,7 +110,7 @@ export class GameService {
       .then((db: SQLiteObject) => {
         return db.executeSql('SELECT Register FROM Games GROUP BY Register ', [])
           .then((data) => {
-           
+
             console.log('then select all');
 
             let games: any[] = [];
@@ -122,9 +122,9 @@ export class GameService {
               games.push(item);
 
             }
-            
+
             return games;
-            
+
           })
           .catch((e) => console.error(e));
       })
@@ -138,7 +138,7 @@ export class GameService {
       .then((db: SQLiteObject) => {
         return db.executeSql('SELECT * FROM Games', [])
           .then((data) => {
-        
+
             console.log('then select all');
 
             let games: any[] = [];
@@ -162,7 +162,7 @@ export class GameService {
       .then((db: SQLiteObject) => {
         return db.executeSql('SELECT * FROM Games G WHERE G.Register = ?', [date])
           .then((data) => {
-  
+
             console.log('then select all games by date');
 
             let games: any[] = [];
@@ -214,7 +214,7 @@ export class GameService {
       .then((db: SQLiteObject) => {
         return db.executeSql('SELECT * FROM Concursos WHERE Concurso = ?', [data])
           .then((data) => {
-  
+
             console.log('then select all games by date');
 
             let concurso: any[] = [];
@@ -234,6 +234,6 @@ export class GameService {
   }
 
 
- 
+
 
 }

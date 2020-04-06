@@ -100,14 +100,14 @@
       </ion-col>
     </ion-row>
     <div *ngIf="resultTotal.length !== 0">
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label>Nº Premiados: {{AwardedNumbers}}</ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Nº Premiados: {{AwardedNumbers}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
       <ion-row>
         <ion-col size="10">
           <ion-label>Seus jogos</ion-label>
@@ -141,7 +141,7 @@
           <ion-button (click)="clear()" expand="block" fill="clear" shape="round">Limpar</ion-button>
         </ion-col>
       </ion-row>
-      
+
     </ion-toolbar>
   </div>
 
@@ -150,16 +150,16 @@
   <div *ngIf="segment === 'resultGame'">
     <ion-toolbar>
       <ion-row>
-        <ion-col size="6">
+        <ion-col size="12">
           <ion-button (click)="verifyResult()" expand="block" fill="clear" shape="round">
             Verificar Resultados
           </ion-button>
         </ion-col>
-        <ion-col size="6">
+        <!-- <ion-col size="6">
           <ion-button (click)="saveResult()" expand="block" fill="clear" shape="round">
             Salvar resultado
           </ion-button>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
 
     </ion-toolbar>
