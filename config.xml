@@ -1,5 +1,5 @@
-<?xml version='0.1' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="lototeka.berso.io" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Lototeka</name>
     <description>Gerenciando seus jogos</description>
     <author email="lucasbmarinho9@gmail.com" href="http://ionicframework.com/">Bersô.io Team</author>
